@@ -1,3 +1,4 @@
+from encodings import utf_8
 import json
 import os
 import pandas as pd
@@ -16,7 +17,7 @@ for url in urls:
 print("Report complete for: " + url)
 
 json_filename = r'C:\Users\radhi\Desktop\lighthouseLink2' + name + '_' + getdate + '.report.json'
-with open(json_filename) as json_data:
+with open(json_filename, encoding= "utf_8") as json_data:
     loaded_json = json.load(json_data)
 
 seo = str(round(loaded_json["categories"]["seo"]["score"] * 100))
@@ -30,7 +31,7 @@ df = df.append(dict, ignore_index=True).sort_values(by='SEO', ascending=False)
 dict = {"URL":url,"SEO":seo,"Accessibility":accessibility,"Performance":performance,"Best Practices":best_practices}
 df = df.append(dict, ignore_index=True).sort_values(by='SEO', ascending=False)
 
-df.to_csv(r'C:\Users\radhi\Desktop\lighthouseLink2\lighthouse_' + name + '_' + getdate + '.csv')
+df.to_csv(r'C:\Users\radhi\Desktop\lighthouse_' + name + '_' + getdate + '.csv')
 print(df)
 
 
